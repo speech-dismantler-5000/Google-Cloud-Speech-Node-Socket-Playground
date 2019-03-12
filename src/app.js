@@ -15,7 +15,7 @@ const speechClient = new speech.SpeechClient(); // Creates a client
 
 
 const app = express();
-const port = process.env.PORT || 1337;
+const port = process.env.PORT || 3001;
 const server = require('http').createServer(app);
 
 const io = require('socket.io')(server);
@@ -26,7 +26,7 @@ app.set('view engine', 'ejs');
 
 
 // =========================== ROUTERS ================================ //
-
+/*
 app.get('/', function (req, res) {
     res.render('index', {});
 });
@@ -35,7 +35,7 @@ app.use('/', function (req, res, next) {
     next(); // console.log(`Request Url: ${req.url}`);
 });
 
-
+*/
 // =========================== SOCKET.IO ================================ //
 
 io.on('connection', function (client) {
