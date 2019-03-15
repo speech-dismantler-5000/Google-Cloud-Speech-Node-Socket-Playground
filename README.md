@@ -1,7 +1,7 @@
 
 
 # Google Cloud Speech Node with Socket Playground
-#
+[![Maintainability](https://api.codeclimate.com/v1/badges/eb6acae1ba648f428498/maintainability)](https://codeclimate.com/github/speech-dismantler-5000/Google-Cloud-Speech-Node-Socket-Playground/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/eb6acae1ba648f428498/test_coverage)](https://codeclimate.com/github/speech-dismantler-5000/Google-Cloud-Speech-Node-Socket-Playground/test_coverage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
