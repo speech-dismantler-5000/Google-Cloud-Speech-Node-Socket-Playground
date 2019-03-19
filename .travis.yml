@@ -1,7 +1,8 @@
 language: node_js
+before_deploy: "cd src"
 deploy:
-	provider: heroku
-	on:
-		branch: master
-
-
+  provider: heroku
+  on:
+    branch: master
+  api_key:
+    secure: Q07a85a3NyVuPK3sqLjzMP+JgF+Ce4PmEFD93S/GeBGXwSEpzvdfki20yU3hbReaR3Sv1CYuWBjNtNWzCsoqlFcayOzRc0m1YLd3Y7Nd0gWFVu+BZjKIozr7Mxnd6QMO9F4H3TxfIZvn98TboOKxvm+IgejO1ibBLo0V8esOoRY2HHglOyKKCdjMZF7XLlCNvBRJAWr3SiWZcSeNuBBBbkkePVN6mDLfjHmdVRxs40RVUByH90nKwah80tirZ2YwNRGAgTlGHHMTeRKLCqUyAqFvv1oqvcYX3igFSF6rXT8NZS4vgqWumNuTV5gWNwkNtH1BXx7XXOgLmz3Vc4F2EWogNN+k7DOphEARloiR2k5JAdp5pTEDQlc68w8DliBD6Yv6sIJfn8IcPo+43YbbTUKYw4CI4SOdxpLJvxmHVq+FRpQQBFKCxRNOSaRVQbbOE4NWfLnlr47C65bFPMjM0mmfUspYsICQmMlBn2aLQObV3G9mAbZ+kTja2OMwHAxK+q7Li6dG5BRggj1V7ZdU+6Jz9pkaJ8n4+Da3nn6C8Qd88RHcfeI+bwOCRBKFoxG/B+swrBmiMmN4fQdwZZ2rNc8gTIqqWdAEjn40+8imohwQb83hAkCfgM8OXqfq9ogY/7fwqX/9iVeTokMmYatFtSCLotikl15DR66+Zxl++tE=
