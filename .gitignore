@@ -1,4 +1,5 @@
 src/node_modules
+node_modules
 src/pathToYourJson.json
 src/package-lock.json
 .env
@@ -8,4 +9,5 @@ src/SpeechSalary-d1a6920dcea3.json
 srcLogOnly/config.codekit3
 .DS_Store
 src/auth.json
+auth.json
 src/client
