@@ -23,7 +23,7 @@ var credentials = { "type" : process.env.CREDENTIALS_TYPE,
                     };
 
 var credentialsString = JSON.stringify(credentials);
-fs.writeFile("auth.json", credentialsString);
+fs.writeFileSync("auth.json", credentialsString);
 
 // Google Cloud
 const speech = require('@google-cloud/speech');
