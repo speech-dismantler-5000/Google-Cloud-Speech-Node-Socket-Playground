@@ -11,17 +11,17 @@ const environmentVars = require('dotenv').config();
 
 // Create auth.json file using config variables
 var credentialsString = "{\n" +
-                        "  \"type\": " + process.env.CREDENTIALS_TYPE +",\n"+
-                        "  \"project_id\": " + process.env.CREDENTIALS_PROJECT_ID +",\n"+
-                        "  \"private_key_id\": " + process.env.PRIVATE_KEY_ID +",\n"+
-                        "  \"private_key\": " + process.env.PRIVATE_KEY +",\n"+
-                        "  \"client_email\": " + process.env.CLIENT_EMAIL +",\n"+
-                        "  \"client_id\": " + process.env.CLIENT_ID +",\n"+
-                        "  \"auth_uri\": " + process.env.AUTH_URI +",\n"+
-                        "  \"token_uri\": " + process.env.TOKEN_URI +",\n"+
-                        "  \"auth_provider_x509_cert_url\": " + process.env.AUTH_PROVIDER_CERT_URL +",\n"+
-                        "  \"client_x509_cert_url\": " + process.env.CLIENT_CERT_URL +"\n"+
-                        "}";
+                        "  \"type\": \"" + process.env.CREDENTIALS_TYPE +"\",\n"+
+                        "  \"project_id\": \"" + process.env.CREDENTIALS_PROJECT_ID +"\",\n"+
+                        "  \"private_key_id\": \"" + process.env.PRIVATE_KEY_ID +"\",\n"+
+                        "  \"private_key\": \"" + process.env.PRIVATE_KEY +"\",\n"+
+                        "  \"client_email\": \"" + process.env.CLIENT_EMAIL +"\",\n"+
+                        "  \"client_id\": \"" + process.env.CLIENT_ID +"\",\n"+
+                        "  \"auth_uri\": \"" + process.env.AUTH_URI +"\",\n"+
+                        "  \"token_uri\": \"" + process.env.TOKEN_URI +"\",\n"+
+                        "  \"auth_provider_x509_cert_url\": \"" + process.env.AUTH_PROVIDER_CERT_URL +"\",\n"+
+                        "  \"client_x509_cert_url\": \"" + process.env.CLIENT_CERT_URL +"\"\n"+
+                        "}\n";
 
 fs.writeFileSync("auth.json", credentialsString);
 
