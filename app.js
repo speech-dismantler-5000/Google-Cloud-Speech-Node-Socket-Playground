@@ -23,7 +23,7 @@ var credentials = { "type" : process.env.CREDENTIALS_TYPE,
                     };
 
 var credentialsString = JSON.stringify(credentials);
-fs.writeFileSync("auth.json", credentialsString);
+//fs.writeFileSync("auth.json", credentialsString);
 
 // Google Cloud
 const speech = require('@google-cloud/speech');
@@ -31,26 +31,32 @@ const speechClient = new speech.SpeechClient(); // Creates a client
 
 
 const app = express();
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    return next();
+  });
 const port = process.env.PORT || 3001;
 const server = require('http').createServer(app);
 
 const io = require('socket.io')(server);
 
-app.use('/assets', express.static(__dirname + '/public'));
-app.use('/session/assets', express.static(__dirname + '/public'));
-app.set('view engine', 'ejs');
+//app.use('/assets', express.static(__dirname + '/public'));
+//app.use('/session/assets', express.static(__dirname + '/public'));
+//app.set('view engine', 'ejs');
 
 
 // =========================== ROUTERS ================================ //
-/*
+
 app.get('/', function (req, res) {
-    res.render('index', {});
+    res.send("<html></html>");
 });
 
+/*
 app.use('/', function (req, res, next) {
     next(); // console.log(`Request Url: ${req.url}`);
 });
-
 */
 // =========================== SOCKET.IO ================================ //
 
@@ -125,7 +131,7 @@ const request = {
         sampleRateHertz: sampleRateHertz,
         languageCode: languageCode,
         profanityFilter: false,
-        enableWordTimeOffsets: true,
+        enableWordTimeOffsets: true
         // speechContexts: [{
         //     phrases: ["hoful","shwazil"]
         //    }] // add your own speech context for better recognition
