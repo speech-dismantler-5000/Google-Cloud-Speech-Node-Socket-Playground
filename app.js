@@ -10,19 +10,19 @@ const fs = require('fs');
 const environmentVars = require('dotenv').config();
 
 // Create auth.json file using config variables
-var credentials = { "type" : process.env.CREDENTIALS_TYPE,
-                    "project_id" : process.env.CREDENTIALS_PROJECT_ID,
-                    "private_key_id" : process.env.PRIVATE_KEY_ID,
-                    "private_key" : process.env.PRIVATE_KEY,
-                    "client_email" : process.env.CLIENT_EMAIL,
-                    "client_id" : process.env.CLIENT_ID,
-                    "auth_uri" : process.env.AUTH_URI,
-                    "token_uri" : process.env.TOKEN_URI,
-                    "auth_provider_x509_cert_url" : process.env.AUTH_PROVIDER_CERT_URL,
-                    "client_x509_cert_url" : process.env.CLIENT_CERT_URL
-                    };
+var credentialsString = "{\n" +
+                        "  \"type\": " + process.env.CREDENTIALS_TYPE +",\n"+
+                        "  \"project_id\": " + process.env.CREDENTIALS_PROJECT_ID +",\n"+
+                        "  \"private_key_id\": " + process.env.PRIVATE_KEY_ID +",\n"+
+                        "  \"private_key\": " + process.env.PRIVATE_KEY +",\n"+
+                        "  \"client_email\": " + process.env.CLIENT_EMAIL +",\n"+
+                        "  \"client_id\": " + process.env.CLIENT_ID +",\n"+
+                        "  \"auth_uri\": " + process.env.AUTH_URI +",\n"+
+                        "  \"token_uri\": " + process.env.TOKEN_URI +",\n"+
+                        "  \"auth_provider_x509_cert_url\": " + process.env.AUTH_PROVIDER_CERT_URL +",\n"+
+                        "  \"client_x509_cert_url\": " + process.env.CLIENT_CERT_URL +"\n"+
+                        "}";
 
-var credentialsString = JSON.stringify(credentials);
 fs.writeFileSync("auth.json", credentialsString);
 
 // Google Cloud
