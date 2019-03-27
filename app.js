@@ -11,19 +11,19 @@ const environmentVars = require('dotenv').config();
 
 // Create auth.json file using config variables
 var credentialsString = "{\n" +
-                        "  \"type\": \"" + process.env.CREDENTIALS_TYPE +"\",\n"+
-                        "  \"project_id\": \"" + process.env.CREDENTIALS_PROJECT_ID +"\",\n"+
-                        "  \"private_key_id\": \"" + process.env.PRIVATE_KEY_ID +"\",\n"+
-                        "  \"private_key\": \"" + process.env.PRIVATE_KEY +"\",\n"+
-                        "  \"client_email\": \"" + process.env.CLIENT_EMAIL +"\",\n"+
-                        "  \"client_id\": \"" + process.env.CLIENT_ID +"\",\n"+
-                        "  \"auth_uri\": \"" + process.env.AUTH_URI +"\",\n"+
-                        "  \"token_uri\": \"" + process.env.TOKEN_URI +"\",\n"+
-                        "  \"auth_provider_x509_cert_url\": \"" + process.env.AUTH_PROVIDER_CERT_URL +"\",\n"+
-                        "  \"client_x509_cert_url\": \"" + process.env.CLIENT_CERT_URL +"\"\n"+
-                        "}\n";
+    "  \"type\": \"" + process.env.CREDENTIALS_TYPE + "\",\n" +
+    "  \"project_id\": \"" + process.env.CREDENTIALS_PROJECT_ID + "\",\n" +
+    "  \"private_key_id\": \"" + process.env.PRIVATE_KEY_ID + "\",\n" +
+    "  \"private_key\": \"" + process.env.PRIVATE_KEY + "\",\n" +
+    "  \"client_email\": \"" + process.env.CLIENT_EMAIL + "\",\n" +
+    "  \"client_id\": \"" + process.env.CLIENT_ID + "\",\n" +
+    "  \"auth_uri\": \"" + process.env.AUTH_URI + "\",\n" +
+    "  \"token_uri\": \"" + process.env.TOKEN_URI + "\",\n" +
+    "  \"auth_provider_x509_cert_url\": \"" + process.env.AUTH_PROVIDER_CERT_URL + "\",\n" +
+    "  \"client_x509_cert_url\": \"" + process.env.CLIENT_CERT_URL + "\"\n" +
+    "}\n";
 
-fs.writeFileSync("auth.json", credentialsString);
+//fs.writeFileSync("auth.json", credentialsString);
 
 // Google Cloud
 const speech = require('@google-cloud/speech');
@@ -31,20 +31,16 @@ const speechClient = new speech.SpeechClient(); // Creates a client
 
 
 const app = express();
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     return next();
-  });
+});
 const port = process.env.PORT || 3001;
 const server = require('http').createServer(app);
 
 const io = require('socket.io')(server);
-
-//app.use('/assets', express.static(__dirname + '/public'));
-//app.use('/session/assets', express.static(__dirname + '/public'));
-//app.set('view engine', 'ejs');
 
 
 // =========================== ROUTERS ================================ //
@@ -52,12 +48,6 @@ const io = require('socket.io')(server);
 app.get('/', function (req, res) {
     res.send("<html></html>");
 });
-
-/*
-app.use('/', function (req, res, next) {
-    next(); // console.log(`Request Url: ${req.url}`);
-});
-*/
 // =========================== SOCKET.IO ================================ //
 
 io.on('connection', function (client) {
@@ -131,10 +121,11 @@ const request = {
         sampleRateHertz: sampleRateHertz,
         languageCode: languageCode,
         profanityFilter: false,
-        enableWordTimeOffsets: true
-        // speechContexts: [{
-        //     phrases: ["hoful","shwazil"]
-        //    }] // add your own speech context for better recognition
+        enableWordTimeOffsets: true,
+        speechContexts: [{
+            phrases: ["um"]
+        }] // add your own speech context for better recognition
+        ,enableAutomaticPunctuation: true
     },
     interimResults: true // If you want interim results, set this to true
 };
