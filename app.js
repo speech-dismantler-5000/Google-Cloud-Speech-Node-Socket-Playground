@@ -23,7 +23,7 @@ var credentialsString = "{\n" +
     "  \"client_x509_cert_url\": \"" + process.env.CLIENT_CERT_URL + "\"\n" +
     "}\n";
 
-//fs.writeFileSync("auth.json", credentialsString);
+fs.writeFileSync("auth.json", credentialsString);
 
 // Google Cloud
 const speech = require('@google-cloud/speech');
