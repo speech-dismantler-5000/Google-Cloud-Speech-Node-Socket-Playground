@@ -8,9 +8,26 @@
 const express = require('express'); // const bodyParser = require('body-parser'); // const path = require('path');
 const fs = require('fs');
 const environmentVars = require('dotenv').config();
+const authFilePath = './auth.json'
 
-// Create auth.json file using config variables
-var credentialsString = "{\n" +
+CheckForGoogleAPIAuthorizationFile(fs);
+
+// Is not already existing, create auth.json file using config variables
+function CheckForGoogleAPIAuthorizationFile(fs){
+    try {
+        if (fs.existsSync(authFilePath)){
+                console.log("Authorization file auth.json found, using it to set up environment variables.");
+        } else {
+                console.log("No authorization file auth.json found, parsing it from environment variables.");
+                ParseAuthFileFromEnvVariables(fs);
+        }
+    } catch(err){
+        console.error(err);
+    }
+}
+
+function ParseAuthFileFromEnvVariables(fs) {
+    var credentialsString = "{\n" +
     "  \"type\": \"" + process.env.CREDENTIALS_TYPE + "\",\n" +
     "  \"project_id\": \"" + process.env.CREDENTIALS_PROJECT_ID + "\",\n" +
     "  \"private_key_id\": \"" + process.env.PRIVATE_KEY_ID + "\",\n" +
@@ -23,7 +40,8 @@ var credentialsString = "{\n" +
     "  \"client_x509_cert_url\": \"" + process.env.CLIENT_CERT_URL + "\"\n" +
     "}\n";
 
-fs.writeFileSync("auth.json", credentialsString);
+    fs.writeFileSync("auth.json", credentialsString);
+}
 
 // Google Cloud
 const speech = require('@google-cloud/speech');
